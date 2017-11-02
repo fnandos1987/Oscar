@@ -25,7 +25,7 @@ public class CategoriaDao extends Dao implements IDao<Categoria> {
     }
 
     public ArrayList<Categoria> findAll() {
-        ArrayList<Categoria> array = new ArrayList<Categoria>();
+        ArrayList<Categoria> array = new ArrayList<>();
 
         try {
             String query = "select * from categoria";

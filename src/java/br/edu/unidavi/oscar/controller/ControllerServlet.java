@@ -6,7 +6,6 @@
 package br.edu.unidavi.oscar.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author user
  */
-@WebServlet(name = "Categoria", urlPatterns = {"/categoria"})
-public class Categoria extends HttpServlet {
+@WebServlet(name = "action", urlPatterns = {"/action"})
+public class ControllerServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,19 +29,20 @@ public class Categoria extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Categoria</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Categoria at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String parametro = request.getParameter("act");
+        String nomeDaClasse = "br.edu.unidavi.oscar.controller." + parametro;
+        
+        try {
+            Class classe = Class.forName(nomeDaClasse);
+            
+            IAction logica = (IAction) classe.newInstance();
+            String pagina = logica.execute(request, response);
+            
+            request.getRequestDispatcher(pagina).forward(request, response);
+        } catch (Exception e) {
+            throw new ServletException("A lógica de negócios causou uma exceção", e);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

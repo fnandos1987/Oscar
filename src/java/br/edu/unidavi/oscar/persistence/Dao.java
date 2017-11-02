@@ -23,8 +23,8 @@ public class Dao {
         try {
             PreparedStatement pstmt = getConnection().prepareStatement(sql);
 
-            for (int i = 1; i <= parametros.length; i++) {
-                pstmt.setObject(i, parametros[i]);
+            for (int i = 0; i < parametros.length; i++) {
+                pstmt.setObject(i + 1, parametros[i]);
             }
 
             pstmt.execute();
@@ -53,6 +53,22 @@ public class Dao {
         ResultSet resul = null;
         try {
             PreparedStatement pstmt = getConnection().prepareStatement(sql);
+            resul = pstmt.executeQuery();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return resul;
+    }
+    
+    protected ResultSet getAllByQueryWithParameters(String sql, Object... parametros) {
+        ResultSet resul = null;
+        try {
+            PreparedStatement pstmt = getConnection().prepareStatement(sql);
+            
+            for (int i = 0; i < parametros.length; i++) {
+                pstmt.setObject(i + 1, parametros[i]);
+            }
+            
             resul = pstmt.executeQuery();
         } catch (Exception ex) {
             ex.printStackTrace();

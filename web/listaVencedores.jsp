@@ -4,24 +4,26 @@
 <html lang="pt">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Lista de Indicações</title>
+        <title>Lista de Vencedores</title>
     </head>
     <body>
        <div align="center">
-            <p>Indicações</p>
+            <p>Vencedores</p>
             <table border="1" style="border-collapse: collapse; min-width: 60%">                
                 <tr style="background-color: #aaee88">
+                    <th>Ano</th>
                     <th>Categoria</th>
                     <th>Filme</th>                    
                     <th>Titulo</th>                    
                     <th>Indicado</th>                    
                 </tr>
-                <c:forEach var="indicacao" items="${indicacoes}" varStatus="id">
+                <c:forEach var="vencedor" items="${vencedores}" varStatus="id">
                     <tr style="background-color: #${id.count % 2 == 0 ? 'aaee88' : 'ffffff' }">
-                        <td>${indicacao.categoria.descricao}</td>
-                        <td>${indicacao.filme.filCodigo}</td>
-                        <td>${indicacao.filme.titulo}</td>                        
-                        <td>${indicacao.pessoa.nome}</td>                        
+                        <td>${vencedor.ano}</td>
+                        <td>${vencedor.categoria.descricao}</td>
+                        <td>${vencedor.filme.filCodigo}</td>
+                        <td>${vencedor.filme.titulo}</td>                        
+                        <td>${vencedor.pessoa.nome}</td>                        
                     </tr>
                 </c:forEach>
             </table>

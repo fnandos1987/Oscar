@@ -5,9 +5,8 @@
  */
 package br.edu.unidavi.oscar.persistence;
 
-import br.edu.unidavi.oscar.model.Categoria;
+import br.edu.unidavi.oscar.model.Elenco;
 import br.edu.unidavi.oscar.model.Filme;
-import br.edu.unidavi.oscar.model.Indicacao;
 import br.edu.unidavi.oscar.model.Pessoa;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,66 +16,57 @@ import java.util.ArrayList;
  *
  * @author fernando.schwambach
  */
-public class IndicacaoDao extends Dao implements IDao<Indicacao> {
+public class ElencoDao extends Dao implements IDao<Elenco>{
 
     @Override
-    public void save(Indicacao entity) {
+    public void save(Elenco entity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update(Indicacao entity) {
+    public void update(Elenco entity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void delete(Indicacao entity) {
+    public void delete(Elenco entity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<Indicacao> findAll() {
+    public ArrayList<Elenco> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Indicacao findById(Object object) {
+    public Elenco findById(Object object) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public ArrayList<Elenco> findAllByFilme(Integer filCodigo) {
+        ArrayList<Elenco> array = new ArrayList<>();
 
-    public ArrayList<Indicacao> findAllByCategoria(Integer catCodigo) {
-        ArrayList<Indicacao> array = new ArrayList<>();
-
-        String sql = "select indicacao.ano,"
-                + "          categoria.catcodigo,"
-                + "          categoria.descricao,"
-                + "          filme.filcodigo,"
+        String sql = "select filme.filcodigo,"
                 + "          filme.titulo," 
                 + "          pessoa.pescodigo," 
                 + "          pessoa.nome" 
-                + "     from indicacao"
-                + "     join categoria"
-                + "       on categoria.catcodigo = indicacao.catcodigo"
+                + "     from elenco"
                 + "     join filme"
-                + "       on filme.filcodigo = indicacao.filcodigo "
-                + "     left join indicacaoelenco"
-                + "       on indicacaoelenco.ano = indicacao.ano "
-                + "      and indicacaoelenco.filcodigo = indicacao.filcodigo "
-                + "      and indicacaoelenco.catcodigo = indicacao.catcodigo "
-                + "     left join pessoa"
-                + "       on pessoa.pescodigo = indicacaoelenco.pescodigo "
-                + "    where indicacao.catcodigo = ? "
-                + "    order by indicacao.filcodigo";
+                + "       on filme.filcodigo = elenco.filcodigo "                
+                + "     join pessoa"
+                + "       on pessoa.pescodigo = elenco.pescodigo "
+                + "    where elenco.filcodigo = ? "
+                + "    order by pessoa.pescodigo";
         try {
-            ResultSet rs = super.getAllByQueryWithParameters(sql, catCodigo);
+            ResultSet rs = super.getAllByQueryWithParameters(sql, filCodigo);
             while (rs.next()) {
-                Categoria categoria = new Categoria(rs.getInt("catcodigo"), rs.getString("descricao"));
                 Filme filme = new Filme(rs.getInt("filcodigo"), rs.getString("titulo"));
                 Pessoa pessoa = new Pessoa(rs.getInt("pescodigo"), rs.getString("nome"));
-                array.add(new Indicacao(rs.getShort("ano"), categoria, filme, pessoa));
+                array.add(new Elenco(pessoa, filme));
             }
         } catch (SQLException ex) {
         }
         return array;
     }
+    
 }

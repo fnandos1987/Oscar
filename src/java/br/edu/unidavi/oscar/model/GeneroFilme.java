@@ -9,10 +9,11 @@ public enum GeneroFilme {
     FANTASIA(5, "Fantasia"),
     SCIFI(6, "Sci-Fi"),
     SUSPENSE(7, "Suspense"),
+    MUSICAL(8, "Musical"),
     UNKNOWN(0, "Desconhecido");
 
-    private Integer id;
-    private String descricao;
+    private final Integer id;
+    private final String descricao;
 
     GeneroFilme(Integer cod, String desc) {
         this.id = cod;

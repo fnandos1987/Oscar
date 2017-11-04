@@ -9,17 +9,19 @@
     <body>
        <div align="center">
             <p>Inidicações</p>
-            <table border="1" style="border-collapse: collapse; width: 20%">                
-                <tr>
+            <table border="1" style="border-collapse: collapse; min-width: 60%">                
+                <tr style="background-color: #aaee88">
                     <th>Categoria</th>
                     <th>Filme</th>                    
                     <th>Titulo</th>                    
+                    <th>Indicado</th>                    
                 </tr>
                 <c:forEach var="indicacao" items="${indicacoes}" varStatus="id">
                     <tr style="background-color: #${id.count % 2 == 0 ? 'aaee88' : 'ffffff' }">
                         <td>${indicacao.categoria.descricao}</td>
                         <td>${indicacao.filme.filCodigo}</td>
                         <td>${indicacao.filme.titulo}</td>                        
+                        <td>${indicacao.pessoa.nome}</td>                        
                     </tr>
                 </c:forEach>
             </table>

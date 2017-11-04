@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class ConexaoTeste {
 
     public static void main(String[] args) {
-       IndicacaoDao dao = new IndicacaoDao();
+       IndicacaoDao dao = new IndicacaoDao();       
     }
 
 }

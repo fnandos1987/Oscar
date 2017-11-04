@@ -12,7 +12,7 @@
         <div align="center">
             <p>Lista de Categorias</p>
             <table border="1" style="border-collapse: collapse; width: 20%">                
-                <tr>
+                <tr style="background-color: #aaee88">
                     <th>Categoria</th>
                     <th>Descrição</th>                    
                     <th>Indicações</th>                    

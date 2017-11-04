@@ -26,6 +26,11 @@ public class Indicacao implements Serializable {
      * filme.
      */
     private Filme filme;
+    
+    /**
+     * pessoa
+     */
+    private Pessoa pessoa;
 
     /**
      * The set of vencedor.
@@ -39,9 +44,10 @@ public class Indicacao implements Serializable {
 
     }
 
-    public Indicacao(Categoria categoria, Filme filme) {
+    public Indicacao(Categoria categoria, Filme filme, Pessoa pessoa) {
         this.categoria = categoria;
         this.filme = filme;
+        this.pessoa = pessoa;
     }
 
     /**
@@ -79,6 +85,15 @@ public class Indicacao implements Serializable {
     public Filme getFilme() {
         return this.filme;
     }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }   
+    
 
     /**
      * Set the set of the vencedor.

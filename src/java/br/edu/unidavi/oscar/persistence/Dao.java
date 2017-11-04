@@ -12,8 +12,8 @@ public class Dao {
     private Connection connection;
 
     protected Dao() {
-        this.connection = Conexao.getConnection();
-    }
+        this.connection = Conexao.getInstance().getConnection();
+    }     
 
     protected Connection getConnection() {
         return connection;
@@ -75,4 +75,10 @@ public class Dao {
         }
         return resul;
     }
+    
+    @Override
+    protected void finalize() throws Throwable {
+        this.connection.close();
+        super.finalize();
+    }  
 }

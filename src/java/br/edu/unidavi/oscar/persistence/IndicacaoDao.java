@@ -8,6 +8,7 @@ package br.edu.unidavi.oscar.persistence;
 import br.edu.unidavi.oscar.model.Categoria;
 import br.edu.unidavi.oscar.model.Filme;
 import br.edu.unidavi.oscar.model.Indicacao;
+import br.edu.unidavi.oscar.model.Pessoa;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author fernando.schwambach
  */
-public class IndicacaoDao extends Dao implements IDao<Indicacao>{
+public class IndicacaoDao extends Dao implements IDao<Indicacao> {
 
     @Override
     public void save(Indicacao entity) {
@@ -41,32 +42,39 @@ public class IndicacaoDao extends Dao implements IDao<Indicacao>{
     public Indicacao findById(Object object) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     public ArrayList<Indicacao> findAllByCategoria(Integer catCodigo) {
         ArrayList<Indicacao> array = new ArrayList<>();
 
-        String sql = "select categoria.catcodigo," +
-                     "       categoria.descricao," +
-                     "       filme.filcodigo," +
-                     "       filme.titulo" +
-                     "  from indicacao" +
-                     "  join categoria" +
-                     "    on categoria.catcodigo = indicacao.catcodigo" +
-                     "  join filme" +
-                     "    on filme.filcodigo = indicacao.filcodigo " +
-                     " where indicacao.catcodigo = ?";        
-        try {           
+        String sql = "select categoria.catcodigo,"
+                + "          categoria.descricao,"
+                + "          filme.filcodigo,"
+                + "          filme.titulo," 
+                + "          pessoa.pescodigo," 
+                + "          pessoa.nome" 
+                + "     from indicacao"
+                + "     join categoria"
+                + "       on categoria.catcodigo = indicacao.catcodigo"
+                + "     join filme"
+                + "       on filme.filcodigo = indicacao.filcodigo "
+                + "     left join indicacaoelenco"
+                + "       on indicacaoelenco.filcodigo = indicacao.filcodigo "
+                + "      and indicacaoelenco.catcodigo = indicacao.catcodigo "
+                + "     left join pessoa"
+                + "       on pessoa.pescodigo = indicacaoelenco.pescodigo "
+                + "    where indicacao.catcodigo = ? "
+                + "    order by indicacao.filcodigo";
+        try {
             ResultSet rs = super.getAllByQueryWithParameters(sql, catCodigo);
-            if (rs instanceof ResultSet) {
-                while (rs.next()) {
-                    Categoria categoria = new Categoria(rs.getInt("catcodigo"), rs.getString("descricao"));
-                    Filme filme = new Filme(rs.getInt("filcodigo"), rs.getString("titulo"));                    
-                    array.add(new Indicacao(categoria, filme));
-                }
+            while (rs.next()) {
+                Categoria categoria = new Categoria(rs.getInt("catcodigo"), rs.getString("descricao"));
+                Filme filme = new Filme(rs.getInt("filcodigo"), rs.getString("titulo"));
+                Pessoa pessoa = new Pessoa(rs.getInt("pescodigo"), rs.getString("nome"));
+                array.add(new Indicacao(categoria, filme, pessoa));
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return array;        
-    }    
+        return array;
+    }
 }

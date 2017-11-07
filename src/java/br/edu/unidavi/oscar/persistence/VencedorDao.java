@@ -16,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author fernando.schwambach
  */
-public class VencedorDao extends Dao implements IDao<Vencedor> {
+public class VencedorDao extends Dao implements IDao<Integer, Vencedor> {
 
     @Override
     public void save(Vencedor entity) {
@@ -75,7 +75,7 @@ public class VencedorDao extends Dao implements IDao<Vencedor> {
     }
 
     @Override
-    public Vencedor findById(Object object) {
+    public Vencedor findById(Integer object) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

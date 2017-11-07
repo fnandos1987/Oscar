@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  * @author fernando.schwambach
  */
-public class FilmeDao extends Dao implements IDao<Filme> {
+public class FilmeDao extends Dao implements IDao<Integer, Filme> {
     
     private final String SELECT = "select * from filme order by filcodigo";
     private final String INSERT = "insert into filme(filcodigo, titulo, genero, paisorigem, estreia, duracao, sinopse) values (?,?,?,?,?,?,?)";
@@ -53,7 +53,7 @@ public class FilmeDao extends Dao implements IDao<Filme> {
     }
 
     @Override
-    public Filme findById(Object object) {
+    public Filme findById(Integer id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }    
 }

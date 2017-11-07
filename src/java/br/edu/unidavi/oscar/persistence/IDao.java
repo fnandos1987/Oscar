@@ -2,11 +2,11 @@ package br.edu.unidavi.oscar.persistence;
 
 import java.util.ArrayList;
 
-public interface IDao<T> {
+public interface IDao<T, V> {
 
-    public void save(T entity);
-    public void update(T entity);
-    public void delete(T entity);
-    public ArrayList<T> findAll();
-    public T findById(Object object);
+    public void save(V entity);
+    public void update(V entity);
+    public void delete(V entity);
+    public ArrayList<V> findAll();
+    public V findById(T id);
 }

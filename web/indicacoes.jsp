@@ -7,7 +7,7 @@
         <title>Lista de Indicações</title>
     </head>
     <body>
-       <div align="center">
+        <div align="center">
             <p>Indicações</p>
             <table border="1" style="border-collapse: collapse; min-width: 60%">                
                 <tr style="background-color: #aaee88">
@@ -15,6 +15,7 @@
                     <th>Filme</th>                    
                     <th>Titulo</th>                    
                     <th>Indicado</th>                    
+                    <th>Detalhe Indicado</th>                    
                 </tr>
                 <c:forEach var="indicacao" items="${indicacoes}" varStatus="id">
                     <tr style="background-color: #${id.count % 2 == 0 ? 'aaee88' : 'ffffff' }">
@@ -22,6 +23,11 @@
                         <td>${indicacao.filme.filCodigo}</td>
                         <td>${indicacao.filme.titulo}</td>                        
                         <td>${indicacao.pessoa.nome}</td>                        
+                        <td>
+                            <c:if test="${indicacao.pessoa.pesCodigo != ''}">
+                                <a href="action?act=DetalharPessoa&pescodigo=${indicacao.pessoa.pesCodigo}">visualizar</a>                            
+                            </c:if>
+                        </td>                        
                     </tr>
                 </c:forEach>
             </table>

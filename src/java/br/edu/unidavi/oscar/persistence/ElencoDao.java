@@ -16,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author fernando.schwambach
  */
-public class ElencoDao extends Dao implements IDao<Elenco>{
+public class ElencoDao extends Dao implements IDao<Integer, Elenco>{
 
     @Override
     public void save(Elenco entity) {
@@ -39,7 +39,7 @@ public class ElencoDao extends Dao implements IDao<Elenco>{
     }
 
     @Override
-    public Elenco findById(Object object) {
+    public Elenco findById(Integer id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

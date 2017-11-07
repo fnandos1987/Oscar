@@ -17,7 +17,7 @@ import java.util.ArrayList;
  *
  * @author fernando.schwambach
  */
-public class IndicacaoDao extends Dao implements IDao<Indicacao> {
+public class IndicacaoDao extends Dao implements IDao<Integer, Indicacao> {
 
     @Override
     public void save(Indicacao entity) {
@@ -40,7 +40,7 @@ public class IndicacaoDao extends Dao implements IDao<Indicacao> {
     }
 
     @Override
-    public Indicacao findById(Object object) {
+    public Indicacao findById(Integer id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

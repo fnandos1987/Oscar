@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import br.edu.unidavi.oscar.model.Categoria;
 
-public class CategoriaDao extends Dao implements IDao<Categoria> {
+public class CategoriaDao extends Dao implements IDao<Integer, Categoria> {
     
     private final String SELECT = "select * from categoria order by catcodigo";
     private final String INSERT = "insert into categoria(catcodigo, descricao) values (?,?)";
@@ -48,7 +48,7 @@ public class CategoriaDao extends Dao implements IDao<Categoria> {
     }
 
     @Override
-    public Categoria findById(Object object) {
+    public Categoria findById(Integer id) {
         // TODO Auto-generated method stub
         return null;
     }

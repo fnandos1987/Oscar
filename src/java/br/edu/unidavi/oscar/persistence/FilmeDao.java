@@ -54,6 +54,23 @@ public class FilmeDao extends Dao implements IDao<Integer, Filme> {
 
     @Override
     public Filme findById(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Filme filme = new Filme();
+        try {
+            ResultSet rs = getAllByQuery(SELECT);
+            if (rs instanceof ResultSet) {
+                while (rs.next()) {
+                    filme.setFilCodigo(rs.getInt("filcodigo"));
+                    filme.setTitulo(rs.getString("titulo"));
+                    filme.setGenero(rs.getShort("genero"));
+                    filme.setPaisOrigem(rs.getString("paisorigem"));
+                    filme.setEstreia(rs.getDate("estreia"));
+                    filme.setDuracao(rs.getShort("duracao"));
+                    filme.setSinopse(rs.getString("sinopse"));
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return filme;
     }    
 }

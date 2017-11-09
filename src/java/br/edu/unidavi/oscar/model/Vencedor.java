@@ -1,6 +1,7 @@
 package br.edu.unidavi.oscar.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Model class of vencedor.
@@ -16,19 +17,9 @@ public class Vencedor implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * ano.
+     * pk
      */
-    private Short ano;
-
-    /**
-     * categoria.
-     */
-    private Categoria categoria;
-
-    /**
-     * filme.
-     */
-    private Filme filme;
+    private VencedorPk pk;
     
     /**
      * pessoa
@@ -41,65 +32,17 @@ public class Vencedor implements Serializable {
     public Vencedor() {
     }
 
-    public Vencedor(Short ano, Categoria categoria, Filme filme, Pessoa pessoa) {
-        this.ano = ano;
-        this.categoria = categoria;
-        this.filme = filme;
+    public Vencedor(VencedorPk pk, Pessoa pessoa) {
+        this.pk = pk;
         this.pessoa = pessoa;
     }
 
-    /**
-     * Set the ano.
-     *
-     * @param ano ano
-     */
-    public void setAno(Short ano) {
-        this.ano = ano;
+    public VencedorPk getPk() {
+        return pk;
     }
 
-    /**
-     * Get the ano.
-     *
-     * @return ano
-     */
-    public Short getAno() {
-        return this.ano;
-    }
-
-    /**
-     * Set the categoria.
-     *
-     * @param categoria categoria
-     */
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
-
-    /**
-     * Get the categoria.
-     *
-     * @return categoria
-     */
-    public Categoria getCategoria() {
-        return this.categoria;
-    }
-
-    /**
-     * Set the filme.
-     *
-     * @param filme filme
-     */
-    public void setFilme(Filme filme) {
-        this.filme = filme;
-    }
-
-    /**
-     * Get the filme.
-     *
-     * @return filme
-     */
-    public Filme getFilme() {
-        return this.filme;
+    public void setPk(VencedorPk pk) {
+        this.pk = pk;
     }
 
     public Pessoa getPessoa() {
@@ -109,24 +52,14 @@ public class Vencedor implements Serializable {
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
-    
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((ano == null) ? 0 : ano.hashCode());
-        result = prime * result + ((categoria == null) ? 0 : categoria.hashCode());
-        result = prime * result + ((filme == null) ? 0 : filme.hashCode());
-        return result;
+        int hash = 7;
+        hash = 19 * hash + Objects.hashCode(this.pk);
+        return hash;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -138,26 +71,8 @@ public class Vencedor implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Vencedor other = (Vencedor) obj;
-        if (ano == null) {
-            if (other.ano != null) {
-                return false;
-            }
-        } else if (!ano.equals(other.ano)) {
-            return false;
-        }
-        if (categoria == null) {
-            if (other.categoria != null) {
-                return false;
-            }
-        } else if (!categoria.equals(other.categoria)) {
-            return false;
-        }
-        if (filme == null) {
-            if (other.filme != null) {
-                return false;
-            }
-        } else if (!filme.equals(other.filme)) {
+        final Vencedor other = (Vencedor) obj;
+        if (!Objects.equals(this.pk, other.pk)) {
             return false;
         }
         return true;

@@ -8,10 +8,11 @@
         <title>Lista de Filmes</title>
     </head>
     <body>
+        <c:import url="cabecalho.jsp" />            
         <div align="center">
             <p>Filmes</p>
-            <table border="1" style="border-collapse: collapse; min-width: 80%">                
-                <tr style="background-color: #aaee88">
+            <table class="zebrada" style="min-width: 80%">                
+                <tr>
                     <th>Filme</th>                    
                     <th>Título</th>                    
                     <th>Gênero</th>                    
@@ -21,8 +22,8 @@
                     <th>Sinopse</th>                    
                     <th>Elenco</th>                    
                 </tr>
-                <c:forEach var="filme" items="${filmes}" varStatus="id">
-                    <tr style="background-color: #${id.count % 2 == 0 ? 'aaee88' : 'ffffff' }">
+                <c:forEach var="filme" items="${filmes}">
+                    <tr>
                         <td>${filme.filCodigo}</td>
                         <td>${filme.titulo}</td>
                         <td>${filme.descricaoGenero}</td>                        

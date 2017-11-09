@@ -7,19 +7,20 @@
         <title>Detalhe do Elenco</title>
     </head>
     <body>
+       <c:import url="cabecalho.jsp" />            
        <div align="center">
             <p>Elenco</p>
-            <table border="1" style="border-collapse: collapse; min-width: 60%">                
-                <tr style="background-color: #aaee88">                    
+            <table class="zebrada">                
+                <tr>                    
                     <th>Filme</th>                    
                     <th>Pessoa</th>                    
                     <th>Nome</th>                    
                 </tr>
-                <c:forEach var="elenco" items="${elenco}" varStatus="id">
-                    <tr style="background-color: #${id.count % 2 == 0 ? 'aaee88' : 'ffffff' }">
-                        <td>${elenco.filme.titulo}</td>                        
-                        <td>${elenco.pessoa.pesCodigo}</td>                        
-                        <td>${elenco.pessoa.nome}</td>                        
+                <c:forEach var="elenco" items="${elenco}">
+                    <tr>
+                        <td>${elenco.pk.filme.titulo}</td>                        
+                        <td>${elenco.pk.pessoa.pesCodigo}</td>                        
+                        <td>${elenco.pk.pessoa.nome}</td>                        
                     </tr>
                 </c:forEach>
             </table>

@@ -9,6 +9,7 @@ import br.edu.unidavi.oscar.model.Categoria;
 import br.edu.unidavi.oscar.model.Filme;
 import br.edu.unidavi.oscar.model.Pessoa;
 import br.edu.unidavi.oscar.model.Vencedor;
+import br.edu.unidavi.oscar.model.VencedorPk;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  *
  * @author fernando.schwambach
  */
-public class VencedorDao extends Dao implements IDao<Integer, Vencedor> {
+public class VencedorDao extends Dao implements IDao<VencedorPk, Vencedor> {
 
     @Override
     public void save(Vencedor entity) {
@@ -25,7 +26,7 @@ public class VencedorDao extends Dao implements IDao<Integer, Vencedor> {
 
     @Override
     public void update(Vencedor entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -64,7 +65,8 @@ public class VencedorDao extends Dao implements IDao<Integer, Vencedor> {
                     Categoria categoria = new Categoria(rs.getInt("catcodigo"), rs.getString("descricao"));
                     Filme filme = new Filme(rs.getInt("filcodigo"), rs.getString("titulo"));
                     Pessoa pessoa = new Pessoa(rs.getInt("pescodigo"), rs.getString("nome"));
-                    array.add(new Vencedor(rs.getShort("ano"), categoria, filme, pessoa));
+                    VencedorPk pk = new VencedorPk(rs.getShort("ano"), categoria, filme);
+                    array.add(new Vencedor(pk, pessoa));
                 }
             }
         } catch (Exception ex) {
@@ -75,8 +77,7 @@ public class VencedorDao extends Dao implements IDao<Integer, Vencedor> {
     }
 
     @Override
-    public Vencedor findById(Integer object) {
+    public Vencedor findById(VencedorPk object) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

@@ -9,16 +9,17 @@
         <title>Lista de Categorias de Premiação</title>
     </head>
     <body>
+        <c:import url="cabecalho.jsp" />            
         <div align="center">
             <p>Lista de Categorias</p>
-            <table border="1" style="border-collapse: collapse; width: 20%">                
-                <tr style="background-color: #aaee88">
+            <table class="zebrada">                
+                <tr>
                     <th>Categoria</th>
                     <th>Descrição</th>                    
                     <th>Indicações</th>                    
                 </tr>
-                <c:forEach var="categoria" items="${categorias}" varStatus="id">
-                    <tr style="background-color: #${id.count % 2 == 0 ? 'aaee88' : 'ffffff' }">
+                <c:forEach var="categoria" items="${categorias}">
+                    <tr>
                         <td>${categoria.catCodigo}</td>
                         <td>${categoria.descricao}</td>
                         <td><a href="action?act=ListarIndicacoes&catcodigo=${categoria.catCodigo}">listar</a></td>

@@ -14,6 +14,5 @@ public class ListarVencedores implements IAction{
     public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
         req.setAttribute("vencedores", new VencedorDao().findAll());
         return "listaVencedores.jsp";
-    }
-    
+    }    
 }

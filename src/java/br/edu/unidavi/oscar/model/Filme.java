@@ -54,7 +54,7 @@ public class Filme implements Serializable {
     /**
      * The set of elenco.
      */
-    private Set<Elenco> elencoSet;
+    private Set<ElencoPk> elencoSet;
 
     /**
      * The set of indicacao.
@@ -192,7 +192,7 @@ public class Filme implements Serializable {
      *
      * @param elencoSet The set of elenco
      */
-    public void setElencoSet(Set<Elenco> elencoSet) {
+    public void setElencoSet(Set<ElencoPk> elencoSet) {
         this.elencoSet = elencoSet;
     }
 
@@ -201,7 +201,7 @@ public class Filme implements Serializable {
      *
      * @param elenco elenco
      */
-    public void addElenco(Elenco elenco) {
+    public void addElenco(ElencoPk elenco) {
         this.elencoSet.add(elenco);
     }
 
@@ -210,7 +210,7 @@ public class Filme implements Serializable {
      *
      * @return The set of elenco
      */
-    public Set<Elenco> getElencoSet() {
+    public Set<ElencoPk> getElencoSet() {
         return this.elencoSet;
     }
 

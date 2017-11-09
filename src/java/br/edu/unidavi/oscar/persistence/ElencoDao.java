@@ -6,6 +6,7 @@
 package br.edu.unidavi.oscar.persistence;
 
 import br.edu.unidavi.oscar.model.Elenco;
+import br.edu.unidavi.oscar.model.ElencoPk;
 import br.edu.unidavi.oscar.model.Filme;
 import br.edu.unidavi.oscar.model.Pessoa;
 import java.sql.ResultSet;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  *
  * @author fernando.schwambach
  */
-public class ElencoDao extends Dao implements IDao<Integer, Elenco>{
+public class ElencoDao extends Dao implements IDao<ElencoPk, Elenco>{
 
     @Override
     public void save(Elenco entity) {
@@ -39,7 +40,7 @@ public class ElencoDao extends Dao implements IDao<Integer, Elenco>{
     }
 
     @Override
-    public Elenco findById(Integer id) {
+    public Elenco findById(ElencoPk id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
@@ -62,11 +63,11 @@ public class ElencoDao extends Dao implements IDao<Integer, Elenco>{
             while (rs.next()) {
                 Filme filme = new Filme(rs.getInt("filcodigo"), rs.getString("titulo"));
                 Pessoa pessoa = new Pessoa(rs.getInt("pescodigo"), rs.getString("nome"));
-                array.add(new Elenco(pessoa, filme));
+                ElencoPk pk = new ElencoPk(pessoa, filme);
+                array.add(new Elenco(pk));
             }
         } catch (SQLException ex) {
         }
         return array;
-    }
-    
+    }    
 }

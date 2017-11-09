@@ -1,11 +1,9 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<link rel="stylesheet" href="Resources/css/menu.css" />
+<link rel="stylesheet" href="Resources/css/table.css" />
+<nav class="menu menu-greenyellow">
+    <ul>
+        <li><a href="action?act=ListarCategoria">Categorias</a></li>                    
+        <li><a href="action?act=ListarFilmes">Filmes</a></li>
+        <li><a href="action?act=ListarVencedores">Vencedores</a></li>
+    </ul>
+</nav>

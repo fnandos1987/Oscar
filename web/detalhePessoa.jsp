@@ -6,51 +6,31 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Detalhe de Pessoa</title>
     </head>
-    <style>
-        .tableDetalhePessoa{
-            border: solid 1px black;
-            border-collapse: collapse;
-        }
-
-        .tableDetalhePessoa td{
-            border: solid 1px black;            
-        }
-
-        .tableDetalhePessoa tr:nth-child(odd) {
-            background: #aaee88;
-        }
-
-        .label{
-            width: 140px;
-        }
-
-        .valor{
-            width: 200px;
-        }
-    </style>
     <body>
+        <c:import url="cabecalho.jsp" />            
         <div align="center">
+            <p>Detalhe Indicado</p>
             <c:set var="pessoa" scope="request" value="${pessoa}"/>
-            <table class="tableDetalhePessoa">
+            <table class="zebrada" style="min-width: 30%">
                 <tr>
-                    <td class="label">Pessoa:</td>
-                    <td class="valor">${pessoa.pesCodigo}</td>
+                    <td>Pessoa:</td>
+                    <td>${pessoa.pesCodigo}</td>
                 </tr>
                 <tr>
-                    <td class="label">Nome</td>
-                    <td class="valor">${pessoa.nome}</td>
+                    <td>Nome</td>
+                    <td>${pessoa.nome}</td>
                 </tr>
                 <tr>
-                    <td class="label">Anos de Carreira:</td>
-                    <td class="valor">${pessoa.anosCarreira}</td>
+                    <td>Anos de Carreira:</td>
+                    <td>${pessoa.anosCarreira}</td>
                 </tr>
                 <tr>
-                    <td class="label">Nomeações:</td>
-                    <td class="valor">${pessoa.nomeacoes}</td>
+                    <td>Nomeações:</td>
+                    <td>${pessoa.nomeacoes}</td>
                 </tr>
                 <tr>
-                    <td class="label">Conquistas:</td>
-                    <td class="valor">${pessoa.conquistas}</td>
+                    <td>Conquistas:</td>
+                    <td>${pessoa.conquistas}</td>
                 </tr>
             </table>
         </div>

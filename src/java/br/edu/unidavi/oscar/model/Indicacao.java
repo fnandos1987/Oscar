@@ -1,6 +1,7 @@
 package br.edu.unidavi.oscar.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -16,19 +17,9 @@ public class Indicacao implements Serializable {
     private static final long serialVersionUID = 1L;
     
     /**
-     * ano
+     * pk
      */
-    private Short ano;
-
-    /**
-     * categoria.
-     */
-    private Categoria categoria;
-
-    /**
-     * filme.
-     */
-    private Filme filme;
+    private IndicacaoPk pk;
     
     /**
      * pessoa
@@ -47,47 +38,17 @@ public class Indicacao implements Serializable {
 
     }
 
-    public Indicacao(Short ano, Categoria categoria, Filme filme, Pessoa pessoa) {
-        this.ano = ano;
-        this.categoria = categoria;
-        this.filme = filme;
+    public Indicacao(IndicacaoPk pk, Pessoa pessoa) {
+        this.pk = pk;
         this.pessoa = pessoa;
     }
 
-    /**
-     * Set the categoria.
-     *
-     * @param categoria categoria
-     */
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
+    public IndicacaoPk getPk() {
+        return pk;
     }
 
-    /**
-     * Get the categoria.
-     *
-     * @return categoria
-     */
-    public Categoria getCategoria() {
-        return this.categoria;
-    }
-
-    /**
-     * Set the filme.
-     *
-     * @param filme filme
-     */
-    public void setFilme(Filme filme) {
-        this.filme = filme;
-    }
-
-    /**
-     * Get the filme.
-     *
-     * @return filme
-     */
-    public Filme getFilme() {
-        return this.filme;
+    public void setPk(IndicacaoPk pk) {
+        this.pk = pk;
     }
 
     public Pessoa getPessoa() {
@@ -126,21 +87,13 @@ public class Indicacao implements Serializable {
         return this.vencedorSet;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((categoria == null) ? 0 : categoria.hashCode());
-        result = prime * result + ((filme == null) ? 0 : filme.hashCode());
-        return result;
+        int hash = 7;
+        hash = 31 * hash + Objects.hashCode(this.pk);
+        return hash;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -152,22 +105,10 @@ public class Indicacao implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Indicacao other = (Indicacao) obj;
-        if (categoria == null) {
-            if (other.categoria != null) {
-                return false;
-            }
-        } else if (!categoria.equals(other.categoria)) {
-            return false;
-        }
-        if (filme == null) {
-            if (other.filme != null) {
-                return false;
-            }
-        } else if (!filme.equals(other.filme)) {
+        final Indicacao other = (Indicacao) obj;
+        if (!Objects.equals(this.pk, other.pk)) {
             return false;
         }
         return true;
     }
-
 }

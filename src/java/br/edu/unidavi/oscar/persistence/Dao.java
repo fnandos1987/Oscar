@@ -9,10 +9,12 @@ import br.edu.unidavi.oscar.util.Conexao;
 
 public class Dao {
 
-    private Connection connection;
+    private Connection connection = null;
 
     protected Dao() {
-        this.connection = Conexao.getInstance().getConnection();
+        if(this.connection == null){
+            this.connection = Conexao.getInstance().getConnection();
+        }
     }     
 
     protected Connection getConnection() {

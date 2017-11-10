@@ -72,11 +72,5 @@ public class Dao {
             ex.printStackTrace();
         }
         return resul;
-    }
-    
-    @Override
-    protected void finalize() throws Throwable {
-        this.connection.close();
-        super.finalize();
     }  
 }

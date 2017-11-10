@@ -10,6 +10,7 @@ import br.edu.unidavi.oscar.model.Filme;
 import br.edu.unidavi.oscar.model.Indicacao;
 import br.edu.unidavi.oscar.model.IndicacaoPk;
 import br.edu.unidavi.oscar.model.Pessoa;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,6 +23,10 @@ public class IndicacaoDao extends Dao implements IDao<IndicacaoPk, Indicacao> {
     
     private final String INSERT = "insert into indicacao(ano, catcodigo, filcodigo) values (?,?,?)";
     private final String DELETE = "delete from indicacao where ano = ? and catcodigo = ? and filcodigo = ?";
+
+    public IndicacaoDao(Connection connection) {
+        super(connection);
+    }
 
     @Override
     public void save(Indicacao entity) {

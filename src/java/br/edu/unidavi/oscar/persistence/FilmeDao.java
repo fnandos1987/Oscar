@@ -1,6 +1,7 @@
 package br.edu.unidavi.oscar.persistence;
 
 import br.edu.unidavi.oscar.model.Filme;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,6 +16,10 @@ public class FilmeDao extends Dao implements IDao<Integer, Filme> {
     private final String INSERT = "insert into filme(filcodigo, titulo, genero, paisorigem, estreia, duracao, sinopse) values (?,?,?,?,?,?,?)";
     private final String UPDATE = "update filme set titulo = ?, genero = ?, paisorigem = ?, estreia = ?, duracao = ?, sinopse = ? where filcodigo = ?";
     private final String DELETE = "delete from filme where filcodigo = ?";
+
+    public FilmeDao(Connection connection) {
+        super(connection);
+    }
 
     @Override
     public void save(Filme entity) {

@@ -8,12 +8,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author fernando.schwambach
  */
-public class ListarFilmes implements IAction{
+public class ListarFilmes extends Action {
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-
-        req.setAttribute("filmes", new FilmeDao().findAll());
+        
+        req.setAttribute("filmes", new FilmeDao(super.getConnection(req)).findAll());
         
         return "filme.jsp";
     }

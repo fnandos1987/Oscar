@@ -5,16 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import br.edu.unidavi.oscar.util.Conexao;
-
 public class Dao {
 
-    private Connection connection = null;
+    private final Connection connection;
 
-    protected Dao() {
-        if(this.connection == null){
-            this.connection = Conexao.getInstance().getConnection();
-        }
+    protected Dao(Connection connection) {
+        this.connection = connection;
     }     
 
     protected Connection getConnection() {

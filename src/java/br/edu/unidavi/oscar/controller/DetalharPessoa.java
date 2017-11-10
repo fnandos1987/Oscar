@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author fernando.schwambach
  */
-public class DetalharPessoa implements IAction{
+public class DetalharPessoa extends Action {
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
         Integer pesCodigo = Integer.parseInt(req.getParameter("pescodigo"));
-
-        req.setAttribute("pessoa", new PessoaDao().findById(pesCodigo));
+        
+        req.setAttribute("pessoa", new PessoaDao(super.getConnection(req)).findById(pesCodigo));
         
         return "detalhePessoa.jsp";
     }    

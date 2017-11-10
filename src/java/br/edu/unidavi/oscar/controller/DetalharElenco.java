@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author fernando.schwambach
  */
-public class DetalharElenco implements IAction{
+public class DetalharElenco extends Action {
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
         Integer filCodigo = Integer.parseInt(req.getParameter("filcodigo"));
-
-        req.setAttribute("elenco", new ElencoDao().findAllByFilme(filCodigo));
+        
+        req.setAttribute("elenco", new ElencoDao(super.getConnection(req)).findAllByFilme(filCodigo));
         
         return "listaElenco.jsp";
     }

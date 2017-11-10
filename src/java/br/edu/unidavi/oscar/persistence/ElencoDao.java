@@ -9,6 +9,7 @@ import br.edu.unidavi.oscar.model.Elenco;
 import br.edu.unidavi.oscar.model.ElencoPk;
 import br.edu.unidavi.oscar.model.Filme;
 import br.edu.unidavi.oscar.model.Pessoa;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,6 +19,10 @@ import java.util.ArrayList;
  * @author fernando.schwambach
  */
 public class ElencoDao extends Dao implements IDao<ElencoPk, Elenco>{
+
+    public ElencoDao(Connection connection) {
+        super(connection);
+    }
 
     @Override
     public void save(Elenco entity) {

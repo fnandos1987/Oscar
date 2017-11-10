@@ -8,11 +8,13 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author fernando.schwambach
  */
-public class ListarVencedores implements IAction{
+public class ListarVencedores extends Action {
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-        req.setAttribute("vencedores", new VencedorDao().findAll());
+
+        req.setAttribute("vencedores", new VencedorDao(super.getConnection(req)).findAll());
+
         return "listaVencedores.jsp";
     }    
 }

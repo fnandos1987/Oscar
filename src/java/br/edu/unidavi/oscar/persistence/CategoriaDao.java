@@ -4,13 +4,18 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import br.edu.unidavi.oscar.model.Categoria;
+import java.sql.Connection;
 
-public class CategoriaDao extends Dao implements IDao<Integer, Categoria> {
+public class CategoriaDao extends Dao implements IDao<Integer, Categoria> {       
     
     private final String SELECT = "select * from categoria order by catcodigo";
     private final String INSERT = "insert into categoria(catcodigo, descricao) values (?,?)";
     private final String UPDATE = "update categoria set descricao = ? where catcodigo = ?";
     private final String DELETE = "delete from categoria where catcodigo = ?";
+
+    public CategoriaDao(Connection connection) {
+        super(connection);
+    }
 
     @Override
     public void save(Categoria entity) {

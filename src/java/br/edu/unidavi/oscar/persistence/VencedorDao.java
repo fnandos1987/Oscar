@@ -10,6 +10,7 @@ import br.edu.unidavi.oscar.model.Filme;
 import br.edu.unidavi.oscar.model.Pessoa;
 import br.edu.unidavi.oscar.model.Vencedor;
 import br.edu.unidavi.oscar.model.VencedorPk;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -18,6 +19,10 @@ import java.util.ArrayList;
  * @author fernando.schwambach
  */
 public class VencedorDao extends Dao implements IDao<VencedorPk, Vencedor> {
+
+    public VencedorDao(Connection connection) {
+        super(connection);
+    }
 
     @Override
     public void save(Vencedor entity) {

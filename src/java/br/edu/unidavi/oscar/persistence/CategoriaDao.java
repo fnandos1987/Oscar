@@ -18,19 +18,19 @@ public class CategoriaDao extends Dao implements IDao<Integer, Categoria> {
     }
 
     @Override
-    public void save(Categoria entity) {
+    public Boolean save(Categoria entity) {
         entity.setCatCodigo(getSequence("CATEGORIA", "catcodigo"));
-        execute(this.INSERT, entity.getCatCodigo(), entity.getDescricao());
+        return execute(this.INSERT, entity.getCatCodigo(), entity.getDescricao());
     }
 
     @Override
-    public void update(Categoria entity) {
-        execute(UPDATE, entity.getDescricao(), entity.getCatCodigo());
+    public Boolean update(Categoria entity) {
+        return execute(UPDATE, entity.getDescricao(), entity.getCatCodigo());
     }
 
     @Override
-    public void delete(Categoria entity) {
-        execute(DELETE, entity.getCatCodigo());
+    public Boolean delete(Categoria entity) {
+        return execute(DELETE, entity.getCatCodigo());
     }
 
     @Override

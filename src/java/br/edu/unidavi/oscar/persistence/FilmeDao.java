@@ -22,19 +22,19 @@ public class FilmeDao extends Dao implements IDao<Integer, Filme> {
     }
 
     @Override
-    public void save(Filme entity) {
+    public Boolean save(Filme entity) {
         entity.setFilCodigo(getSequence("filme", "filcodigo"));
-        execute(this.INSERT, entity.getFilCodigo(), entity.getTitulo(), entity.getGenero(), entity.getPaisOrigem(), entity.getEstreia(), entity.getDuracao(), entity.getSinopse());
+        return execute(this.INSERT, entity.getFilCodigo(), entity.getTitulo(), entity.getGenero(), entity.getPaisOrigem(), entity.getEstreia(), entity.getDuracao(), entity.getSinopse());
     }
 
     @Override
-    public void update(Filme entity) {        
-        execute(this.UPDATE, entity.getTitulo(), entity.getGenero(), entity.getPaisOrigem(), entity.getEstreia(), entity.getDuracao(), entity.getSinopse(), entity.getFilCodigo());
+    public Boolean update(Filme entity) {        
+        return execute(this.UPDATE, entity.getTitulo(), entity.getGenero(), entity.getPaisOrigem(), entity.getEstreia(), entity.getDuracao(), entity.getSinopse(), entity.getFilCodigo());
     }
 
     @Override
-    public void delete(Filme entity) {
-        execute(DELETE, entity.getFilCodigo());
+    public Boolean delete(Filme entity) {
+        return execute(DELETE, entity.getFilCodigo());
     }
 
     @Override

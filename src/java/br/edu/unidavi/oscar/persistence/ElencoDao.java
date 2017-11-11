@@ -25,17 +25,17 @@ public class ElencoDao extends Dao implements IDao<ElencoPk, Elenco>{
     }
 
     @Override
-    public void save(Elenco entity) {
+    public Boolean save(Elenco entity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update(Elenco entity) {
+    public Boolean update(Elenco entity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void delete(Elenco entity) {
+    public Boolean delete(Elenco entity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

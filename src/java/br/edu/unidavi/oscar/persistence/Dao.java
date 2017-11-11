@@ -11,13 +11,13 @@ public class Dao {
 
     protected Dao(Connection connection) {
         this.connection = connection;
-    }     
+    }
 
     protected Connection getConnection() {
         return connection;
     }
 
-    protected void execute(String sql, Object... parametros) {
+    protected Boolean execute(String sql, Object... parametros) {
         try {
             PreparedStatement pstmt = getConnection().prepareStatement(sql);
 
@@ -27,10 +27,11 @@ public class Dao {
 
             pstmt.execute();
             pstmt.close();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
-
     }
 
     protected int getSequence(String table, String column) {
@@ -57,20 +58,20 @@ public class Dao {
         }
         return resul;
     }
-    
+
     protected ResultSet getAllByQueryWithParameters(String sql, Object... parametros) {
         ResultSet resul = null;
         try {
             PreparedStatement pstmt = getConnection().prepareStatement(sql);
-            
+
             for (int i = 0; i < parametros.length; i++) {
                 pstmt.setObject(i + 1, parametros[i]);
             }
-            
+
             resul = pstmt.executeQuery();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         return resul;
-    }  
+    }
 }

@@ -22,19 +22,19 @@ public class PessoaDao extends Dao implements IDao<Integer, Pessoa>{
     }
 
     @Override
-    public void save(Pessoa entity) {
+    public Boolean save(Pessoa entity) {
         entity.setPesCodigo(getSequence("pessoa", "pescodigo"));
-        execute(this.INSERT, entity.getPesCodigo(), entity.getNome(), entity.getSexo(), entity.getAnosCarreira(), entity.getNomeacoes(), entity.getConquistas());
+        return execute(this.INSERT, entity.getPesCodigo(), entity.getNome(), entity.getSexo(), entity.getAnosCarreira(), entity.getNomeacoes(), entity.getConquistas());
     }
 
     @Override
-    public void update(Pessoa entity) {
-        execute(this.UPDATE, entity.getNome(), entity.getSexo(), entity.getAnosCarreira(), entity.getNomeacoes(), entity.getConquistas(), entity.getPesCodigo());
+    public Boolean update(Pessoa entity) {
+        return execute(this.UPDATE, entity.getNome(), entity.getSexo(), entity.getAnosCarreira(), entity.getNomeacoes(), entity.getConquistas(), entity.getPesCodigo());
     }
 
     @Override
-    public void delete(Pessoa entity) {
-        execute(DELETE, entity.getPesCodigo());
+    public Boolean delete(Pessoa entity) {
+        return execute(DELETE, entity.getPesCodigo());
     }
 
     @Override

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public interface IDao<T, V> {
 
-    public void save(V entity);
-    public void update(V entity);
-    public void delete(V entity);
+    public Boolean save(V entity);
+    public Boolean update(V entity);
+    public Boolean delete(V entity);
     public ArrayList<V> findAll();
     public V findById(T id);
 }

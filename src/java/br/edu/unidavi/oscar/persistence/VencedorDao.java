@@ -25,17 +25,17 @@ public class VencedorDao extends Dao implements IDao<VencedorPk, Vencedor> {
     }
 
     @Override
-    public void save(Vencedor entity) {
+    public Boolean save(Vencedor entity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update(Vencedor entity) {
+    public Boolean update(Vencedor entity) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void delete(Vencedor entity) {
+    public Boolean delete(Vencedor entity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

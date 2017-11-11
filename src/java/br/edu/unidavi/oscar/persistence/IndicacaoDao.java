@@ -29,18 +29,18 @@ public class IndicacaoDao extends Dao implements IDao<IndicacaoPk, Indicacao> {
     }
 
     @Override
-    public void save(Indicacao entity) {
-        execute(this.INSERT, entity.getPk().getAno(), entity.getPk().getCategoria().getCatCodigo(), entity.getPk().getFilme().getFilCodigo());
+    public Boolean save(Indicacao entity) {
+        return execute(this.INSERT, entity.getPk().getAno(), entity.getPk().getCategoria().getCatCodigo(), entity.getPk().getFilme().getFilCodigo());
     }
 
     @Override
-    public void update(Indicacao entity) {
+    public Boolean update(Indicacao entity) {
         throw new UnsupportedOperationException("Update não implementado para indicação");
     }
 
     @Override
-    public void delete(Indicacao entity) {
-        execute(this.DELETE, entity.getPk().getAno(), entity.getPk().getCategoria().getCatCodigo(), entity.getPk().getFilme().getFilCodigo());
+    public Boolean delete(Indicacao entity) {
+        return execute(this.DELETE, entity.getPk().getAno(), entity.getPk().getCategoria().getCatCodigo(), entity.getPk().getFilme().getFilCodigo());
     }
 
     @Override
